@@ -9,26 +9,21 @@ namespace CleanCode.PoorMethodSignatures
         {
             var userService = new UserService();
 
-            var user = userService.GetUser("username", "password");
-            var anotherUser = userService.GetUser("username");
+            var user = userService.AuthenticateUser("username", "password");
+            var anotherUser = userService.GetUserByUsername("username");
         }
     }
 
     public class UserService
     {
         private UserDbContext _dbContext = new UserDbContext();
-
-        public User GetUser(string username, string password = null)
-        {
-            return password != null ? AuthenticateUser(username, password) : GetUserByUsername(username);
-        }
-
-        private User GetUserByUsername(string username)
+        
+        public User GetUserByUsername(string username)
         {
             return _dbContext.Users.SingleOrDefault(u => u.Username == username);
         }
 
-        private User AuthenticateUser(string username, string password)
+        public User AuthenticateUser(string username, string password)
         {
             var user = _dbContext.Users.SingleOrDefault(u => u.Username == username && u.Password == password);
             if (user != null)
