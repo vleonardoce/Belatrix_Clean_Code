@@ -9,8 +9,8 @@ namespace CleanCode.PoorMethodSignatures
         {
             var userService = new UserService();
 
-            var user = userService.AuthenticateUser("username", "password");
-            var anotherUser = userService.GetUserByUsername("username");
+            var user = userService.Login("username", "password");
+            var anotherUser = userService.GetUser("username");
         }
     }
 
@@ -18,12 +18,12 @@ namespace CleanCode.PoorMethodSignatures
     {
         private UserDbContext _dbContext = new UserDbContext();
         
-        public User GetUserByUsername(string username)
+        public User GetUser(string username)
         {
             return _dbContext.Users.SingleOrDefault(u => u.Username == username);
         }
 
-        public User AuthenticateUser(string username, string password)
+        public User Login(string username, string password)
         {
             var user = _dbContext.Users.SingleOrDefault(u => u.Username == username && u.Password == password);
             if (user != null)
