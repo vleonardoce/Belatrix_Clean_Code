@@ -6,47 +6,41 @@ namespace CleanCode.LongParameterList
 {
     public class LongParameterList
     {
-        public IEnumerable<Reservation> GetReservations(
-           DateTime dateFrom, DateTime dateTo,
-           User user, int locationId,
-           LocationType locationType, int? customerId = null)
+        public IEnumerable<Reservation> GetReservations(ReservationFilterSearch filterSearch)
         {
-            if (dateFrom >= DateTime.Now)
+            if (filterSearch.DateFrom >= DateTime.Now)
                 throw new ArgumentNullException("dateFrom");
-            if (dateTo <= DateTime.Now)
+            if (filterSearch.DateTo <= DateTime.Now)
                 throw new ArgumentNullException("dateTo");
 
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Reservation> GetUpcomingReservations(
-            DateTime dateFrom, DateTime dateTo,
-            User user, int locationId,
-            LocationType locationType)
+        public IEnumerable<Reservation> GetUpcomingReservations(ReservationFilterSearch filterSearch)
         {
-            if (dateFrom >= DateTime.Now)
+            if (filterSearch.DateFrom >= DateTime.Now)
                 throw new ArgumentNullException("dateFrom");
-            if (dateTo <= DateTime.Now)
+            if (filterSearch.DateTo <= DateTime.Now)
                 throw new ArgumentNullException("dateTo");
 
             throw new NotImplementedException();
         }
 
-        private static Tuple<DateTime, DateTime> GetReservationDateRange(DateTime dateFrom, DateTime dateTo, ReservationDefinition sd)
+        private static Tuple<DateTime, DateTime> GetReservationDateRange(ReservationFilterSearch filterSearch, ReservationDefinition reservationDefinition)
         {
-            if (dateFrom >= DateTime.Now)
+            if (filterSearch.DateFrom >= DateTime.Now)
                 throw new ArgumentNullException("dateFrom");
-            if (dateTo <= DateTime.Now)
+            if (filterSearch.DateTo <= DateTime.Now)
                 throw new ArgumentNullException("dateTo");
 
             throw new NotImplementedException();
         }
 
-        public void CreateReservation(DateTime dateFrom, DateTime dateTo, int locationId)
+        public void CreateReservation(Reservation reservation)
         {
-            if (dateFrom >= DateTime.Now)
+            if (reservation.DateFrom >= DateTime.Now)
                 throw new ArgumentNullException("dateFrom");
-            if (dateTo <= DateTime.Now)
+            if (reservation.DateTo <= DateTime.Now)
                 throw new ArgumentNullException("dateTo");
 
             throw new NotImplementedException();
@@ -68,5 +62,19 @@ namespace CleanCode.LongParameterList
 
     public class Reservation
     {
+        public DateTime DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
+        public int LocationId { get; set; }
+    }
+
+    public class ReservationFilterSearch
+    {
+        public DateTime DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
+        public User User { get; set; }
+        public int LocationId { get; set; }
+        public LocationType LocationType { get; set; }
+        public int? CustomerId { get; set; }
+
     }
 }
