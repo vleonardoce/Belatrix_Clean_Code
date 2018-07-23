@@ -63,6 +63,7 @@
     <Compile Include="07 NestedConditionals\NestedConditionals.cs" />
     <Compile Include="04 OutputParameters\OutputParameters.cs" />
     <Compile Include="02 PoorMethodSignatures\PoorMethodSignatures.cs" />
+    <Compile Include="12 FullRefactoring\PostRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="08 SwitchStatements\Customer.cs" />
     <Compile Include="08 SwitchStatements\MonthlyStatement.cs" />
