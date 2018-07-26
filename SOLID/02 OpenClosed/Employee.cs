@@ -12,13 +12,15 @@
         public int ID { get; set; }
         public string EmployeeType { get; set; }
         public string Name { get; set; }
-
-        public decimal CalculateBonus(decimal salary)
+        public decimal Salary { get; set; }
+        public bool IsPermanent
         {
-            if (this.EmployeeType == "Permanent")
-                return salary * .1M;
-            else
-                return salary * .05M;
+            get { return this.EmployeeType == "Permanent"; }
         }
+        public decimal Bonus
+        {
+            get { return (this.IsPermanent ? .1M : .05M) * this.Salary; }
+        }
+
     }
 }
